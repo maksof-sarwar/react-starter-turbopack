@@ -1,9 +1,8 @@
-import { TRPCError, inferAsyncReturnType, initTRPC } from '@trpc/server';
-import { z } from 'zod';
-import { prisma } from './prisma-client';
+import { TRPCError, initTRPC } from '@trpc/server';
 import { Context } from './conext';
 const t = initTRPC.context<Context>();
-export const { router, procedure, middleware, mergeRouters } = t.create();
+export const { router, middleware, mergeRouters, ...trpc } = t.create();
+export const publicProcedure = trpc.procedure;
 const isAuthed = middleware(({ next, ctx }) => {
   if (!ctx.user) {
     throw new TRPCError({ code: 'UNAUTHORIZED' });
@@ -14,28 +13,12 @@ const isAuthed = middleware(({ next, ctx }) => {
     },
   });
 });
-const userRouter = router({
-  login: procedure.input(
-    z.object({
-      email: z.string(),
-      password: z.string()
-    })
-  ).mutation(async ({ ctx, }) => {
-    console.log(ctx.req.cookies);
-    ctx.res.cookie('I set this cookie', 'cooookkiiieee', {
-      path: "/",
-      secure: true,
-      sameSite: "none",
-      httpOnly: true,
-    })
-    const data = await prisma.user.findFirst();
-    return data
-  })
-});
+export const protectedProcedure = trpc.procedure.use(isAuthed)
 
+import { userRouter } from './user';
 
 export const appRouter = router({
-  auth: userRouter,
+  auth: userRouter(),
 });
 
 export type AppRouter = typeof appRouter;

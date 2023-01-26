@@ -10,8 +10,7 @@ const trpc = createTRPCProxyClient<AppRouter>({
 			fetch: (url, options) => {
 				return fetch(url, {
 					...options,
-					credentials: 'include',
-					mode: 'no-cors',
+					credentials: 'same-origin',
 				});
 			},
 		}),
@@ -20,7 +19,7 @@ const trpc = createTRPCProxyClient<AppRouter>({
 function App() {
 	useEffect(() => {
 		trpc.auth.login.mutate({ email: 'test', password: 'asdasdasd' }).then((response) => {
-			console.log(response);
+			console.log(response?.email);
 		});
 	});
 	return <div className='App'>test</div>;
