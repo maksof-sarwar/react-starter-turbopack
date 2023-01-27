@@ -1,7 +1,6 @@
 import { z } from "zod";
 import { protectedProcedure, router } from "./app";
 import { prisma } from "./prisma-client";
-console.log(router)
 export const userRouter = () => {
   return router({
     login: protectedProcedure.input(

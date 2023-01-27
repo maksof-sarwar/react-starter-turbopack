@@ -1,4 +1,5 @@
-import ReactDOM from 'react-dom/client';
+import { createRoot } from 'react-dom/client';
 import App from './App';
 import 'tw-config/tw.css';
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(<App />);
+import { BrowserRouter } from 'react-router-dom';
+createRoot(document.getElementById('root') as HTMLElement).render(<App />);
