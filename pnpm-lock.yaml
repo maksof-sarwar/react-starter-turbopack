@@ -24,7 +24,7 @@ importers:
     specifiers:
       '@fastify/cookie': ^8.3.0
       '@fastify/cors': ^8.2.0
-      '@prisma/client': ^4.9.0
+      '@prisma/client': 4.9.0
       '@trpc/server': ^10.9.0
       '@types/express': ^4.17.16
       '@types/node': '*'
