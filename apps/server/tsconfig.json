@@ -9,6 +9,7 @@
 		"noEmit": true,
 		"noImplicitAny": false,
 		"types": ["node"],
+		"outDir": "dist",
 		"moduleResolution": "nodenext",
 		"strictNullChecks": true
 	}
