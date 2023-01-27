@@ -17,10 +17,10 @@ const trpc = createTRPCProxyClient<AppRouter>({
 });
 function App() {
 	useEffect(() => {
-		trpc.auth.login.mutate({ email: 'test', password: 'asdasdasd' }).then((response) => {
-			console.log(response?.name);
+		trpc.auth.login.mutate({ email: 'test', password: 'asdasdasd', test: 'asdasd' }).then((response) => {
+			console.log(response?.email);
 		});
-	});
+	}, []);
 	return (
 		<div className='App'>
 			<Button
