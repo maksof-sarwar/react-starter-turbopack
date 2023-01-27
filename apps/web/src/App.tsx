@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react';
-import reactLogo from './assets/react.svg';
-import './App.css';
 import { createTRPCProxyClient, httpBatchLink } from '@trpc/client';
+import { useEffect } from 'react';
+import { Button } from 'ui';
 import type { AppRouter } from '../../server/src/app';
 const trpc = createTRPCProxyClient<AppRouter>({
 	links: [
@@ -22,7 +21,11 @@ function App() {
 			console.log(response?.email);
 		});
 	});
-	return <div className='App'>test</div>;
+	return (
+		<div className='App'>
+			<Button />
+		</div>
+	);
 }
 
 export default App;
