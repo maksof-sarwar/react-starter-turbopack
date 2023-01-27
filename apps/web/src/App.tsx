@@ -23,7 +23,11 @@ function App() {
 	});
 	return (
 		<div className='App'>
-			<Button />
+			<Button
+				onClick={() => {
+					console.log('test');
+				}}
+			/>
 			<button className='rab-bg-blue-700'>test</button>
 		</div>
 	);
