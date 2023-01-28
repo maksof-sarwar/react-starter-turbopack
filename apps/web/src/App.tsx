@@ -52,13 +52,13 @@ function App() {
 		start();
 	}, []);
 	return (
-		<>
-			{localStream && <Video srcObject={localStream} />}
-			{remoteStream && <Video srcObject={remoteStream} />}
-		</>
-		// <Suspense fallback={<Spinner />}>
-		// 	<RouterProvider router={router} />
-		// </Suspense>
+		// <>
+		// 	{localStream && <Video srcObject={localStream} />}
+		// 	{remoteStream && <Video srcObject={remoteStream} />}
+		// </>
+		<Suspense fallback={<Spinner />}>
+			<RouterProvider router={router} />
+		</Suspense>
 	);
 }
 
