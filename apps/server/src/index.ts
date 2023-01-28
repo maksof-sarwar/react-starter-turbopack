@@ -5,6 +5,7 @@ import cors from '@fastify/cors'
 import cookie from '@fastify/cookie'
 import { appRouter } from './app';
 import { createContext } from './conext'
+import Turn from 'node-turn'
 
 const server = fastify({
   maxParamLength: 5000,
@@ -23,6 +24,15 @@ server.register(fastifyTRPCPlugin, {
 });
 (async () => {
   try {
+    var turnServer = new Turn({
+      authMech: 'long-term',
+      credentials: {
+        username: "password",
+      },
+      listeningPort: 9000,
+      debugLevel: 'ALL'
+    });
+    turnServer.start();
     await server.listen({ port: 3000 });
     console.log('listening on port 3000')
   } catch (err) {
