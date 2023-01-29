@@ -8,10 +8,10 @@
 		"noEmit": false,
 		"sourceMap": false,
 		"noImplicitAny": false,
-		"types": ["node"],
+		"types": ["node", "express"],
 		"outDir": "dist",
 		"lib": ["ES2015"],
-		"moduleResolution": "nodenext",
+		"moduleResolution": "node",
 		"strictNullChecks": true
 	},
 	"include": ["src/**/*"],

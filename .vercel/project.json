@@ -1,1 +1,15 @@
-{"orgId":"95YpheahpRDM10pGezbCRdVf","projectId":"prj_FDKG8e0nArQXTW19dmrUlo6pLtiW"}
+{
+  "projectId": "prj_FDKG8e0nArQXTW19dmrUlo6pLtiW",
+  "orgId": "95YpheahpRDM10pGezbCRdVf",
+  "settings": {
+    "createdAt": 1674823830377,
+    "framework": null,
+    "devCommand": null,
+    "installCommand": "pnpm install",
+    "buildCommand": null,
+    "outputDirectory": "dist",
+    "rootDirectory": "apps/server",
+    "directoryListing": false,
+    "nodeVersion": "18.x"
+  }
+}
