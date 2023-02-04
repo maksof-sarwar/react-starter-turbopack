@@ -16,8 +16,8 @@
 		"db": "prisma db push",
 		"schemix": "ts-node-dev ./prisma/base.ts && prisma format",
 		"studio": "prisma studio",
-		"postinstall": "prisma generate",
-		"dbsync": "pnpm run schemix && pnpm run db && pnpm run postinstall"
+		"postinstall": "pnpm run dbsync",
+		"dbsync": "pnpm run schemix && pnpm run db && prisma generate"
 	},
 	"keywords": [],
 	"author": "",

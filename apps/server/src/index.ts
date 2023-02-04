@@ -45,4 +45,4 @@ server.setNotFoundHandler((req, rep) => {
 
 
 // Export the Express API
-export default app
+export default server
