@@ -1,5 +1,5 @@
 /**
-!apps/server/*
+!apps/server/**
 !package.json
 !pnpm-lock.yaml
 !vercel.json
