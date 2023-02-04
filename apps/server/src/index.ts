@@ -1,6 +1,6 @@
-import { createExpressMiddleware } from '@trpc/server/adapters/express';
+import { CreateFastifyContextOptions } from '@trpc/server/adapters/fastify';
 import cors from 'cors';
-import express from 'express';
+import fastify from 'fastify';
 import path from 'path';
 import { appRouter } from './app';
 import { createContext } from './conext'
