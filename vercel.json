@@ -1,0 +1,19 @@
+{
+	"version": 2,
+	"builds": [
+		{
+			"src": "apps/server/dist/index.js",
+			"use": "@now/node"
+		},
+		{
+			"src": "apps/server/**",
+			"use": "@vercel/static"
+		}
+	],
+	"routes": [
+		{
+			"src": "/(.*)",
+			"dest": "apps/server/dist/index.js"
+		}
+	]
+}
