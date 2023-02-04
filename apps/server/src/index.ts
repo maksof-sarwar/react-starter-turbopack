@@ -1,7 +1,8 @@
-import { CreateFastifyContextOptions } from '@trpc/server/adapters/fastify';
-import cors from 'cors';
+import { fastifyTRPCPlugin } from '@trpc/server/adapters/fastify';
+import health from 'fastify-healthcheck'
 import fastify from 'fastify';
-import path from 'path';
+import cors from '@fastify/cors'
+import cookie from '@fastify/cookie'
 import { appRouter } from './app';
 import { createContext } from './conext'
 import fastifyStatic from '@fastify/static'
@@ -38,11 +39,7 @@ server.setNotFoundHandler((req, rep) => {
     await server.listen({ port: 3000 });
     console.log('listening on port 3000')
   } catch (err) {
-    console.error(err);
+    server.log.error(err);
     process.exit(1);
   }
 })();
-
-
-// Export the Express API
-export default server

@@ -34,6 +34,7 @@ importers:
       cors: ^2.8.5
       express: ^4.18.2
       fastify: ^4.12.0
+      fastify-healthcheck: ^4.4.0
       pino: ^8.8.0
       pino-pretty: ^9.1.1
       prisma: ^4.9.0
@@ -60,6 +61,7 @@ importers:
       '@types/express': 4.17.16
       '@types/node': 18.11.18
       cors: 2.8.5
+      fastify-healthcheck: 4.4.0
       pino: 8.8.0
       pino-pretty: 9.1.1
       prisma: 4.9.0
@@ -477,7 +479,6 @@ packages:
 
   /@fastify/error/3.2.0:
     resolution: {integrity: sha512-KAfcLa+CnknwVi5fWogrLXgidLic+GXnLjijXdpl8pvkvbXU5BGa37iZO9FGvsh9ZL4y+oFi5cbHBm5UOG+dmQ==}
-    dev: false
 
   /@fastify/fast-json-stringify-compiler/4.2.0:
     resolution: {integrity: sha512-ypZynRvXA3dibfPykQN3RB5wBdEUgSGgny8Qc6k163wYPLD4mEGEDkACp+00YmqkGvIm8D/xYoHajwyEdWD/eg==}
@@ -517,6 +518,13 @@ packages:
       glob: 8.1.0
       p-limit: 3.1.0
       readable-stream: 4.3.0
+    dev: true
+
+  /@fastify/under-pressure/8.2.0:
+    resolution: {integrity: sha512-tqhWBhE6blM3jDn9dmxl5yhyoRWGFGwdihLmyek5pRN3KIOEcRQVtAoX5WKSbeEZ51clnDfCNqm96YC4cEUI7g==}
+    dependencies:
+      '@fastify/error': 3.2.0
+      fastify-plugin: 4.5.0
     dev: true
 
   /@humanwhocodes/config-array/0.11.8:
@@ -2657,6 +2665,13 @@ packages:
   /fast-uri/2.2.0:
     resolution: {integrity: sha512-cIusKBIt/R/oI6z/1nyfe2FvGKVTohVRfvkOhvx0nCEW+xf5NoCXjAHcWp93uOUBchzYcsvPlrapAdX1uW+YGg==}
     dev: false
+
+  /fastify-healthcheck/4.4.0:
+    resolution: {integrity: sha512-goP2YYBp+inqrEFixZDxsoxFN8h219ZOzCFv1sMpleaxwbo5CmoLrVzrja6vCMa1LNx6aEvOcGaqLX5Oev1q/A==}
+    engines: {node: '>=14.15.0'}
+    dependencies:
+      '@fastify/under-pressure': 8.2.0
+    dev: true
 
   /fastify-plugin/4.5.0:
     resolution: {integrity: sha512-79ak0JxddO0utAXAQ5ccKhvs6vX2MGyHHMMsmZkBANrq3hXc1CHzvNPHOcvTsVMEPl5I+NT+RO4YKMGehOfSIg==}
