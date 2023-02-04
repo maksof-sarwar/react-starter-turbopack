@@ -1,6 +1,2 @@
-/**
-!apps
-!packages
-!package.json
-!pnpm-lock.yaml
-!vercel.json
+node_modules
+!client

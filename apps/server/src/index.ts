@@ -29,6 +29,7 @@ app.register(fastifyTRPCPlugin, {
   trpcOptions: { router: appRouter, createContext, },
 });
 app.setNotFoundHandler((req, rep) => {
+  console.log(FRONTEND)
   if (req.url.startsWith("/api")) {
     rep.notFound(`Route ${req.method}:${req.url} not found`)
   } else
