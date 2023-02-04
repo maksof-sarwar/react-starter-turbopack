@@ -1,7 +1,7 @@
 import { Suspense, useEffect, useState } from 'react';
-import { RouterProvider, useRoutes } from 'react-router-dom';
+import { RouterProvider, createBrowserRouter, useRoutes } from 'react-router-dom';
 import { Spinner } from 'ui';
-import router from '@/utils/router';
+import { router } from '@/utils/router';
 const iceServers = [
 	{
 		urls: 'stun:192.168.1.104:9000?transport=udp',
@@ -57,7 +57,7 @@ function App() {
 		// 	{remoteStream && <Video srcObject={remoteStream} />}
 		// </>
 		<Suspense fallback={<Spinner />}>
-			<RouterProvider router={router} />
+			<RouterProvider router={createBrowserRouter(router)} />
 		</Suspense>
 	);
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, Navigate } from 'react-router-dom';
 
 const SignIn = () => {
 	return (
@@ -69,9 +70,9 @@ const SignIn = () => {
 							</div>
 
 							<div className='text-sm'>
-								<a href='#' className='font-medium text-indigo-600 hover:text-indigo-500'>
-									Forgot your password?
-								</a>
+								<Link to='/auth/test'>
+									<a className='font-medium text-indigo-600 hover:text-indigo-500'>Forgot your password?</a>
+								</Link>
 							</div>
 						</div>
 
