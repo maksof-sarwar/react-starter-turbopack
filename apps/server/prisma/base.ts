@@ -3,7 +3,7 @@ import { createSchema } from 'schemix';
 createSchema({
   datasource: {
     provider: "mysql",
-    url: { env: "DATABASE_URL" },
+    url: { env: "DATABASE" },
   },
   generator: [
     {

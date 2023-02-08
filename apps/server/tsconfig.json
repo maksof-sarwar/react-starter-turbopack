@@ -10,9 +10,14 @@
 		"noImplicitAny": false,
 		"types": ["node"],
 		"outDir": "dist",
+		"target": "ES6",
 		"lib": ["ES2015"],
 		"moduleResolution": "node",
-		"strictNullChecks": true
+		"strictNullChecks": true,
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["*"]
+		}
 	},
 	"include": ["src/**/*"],
 	"exclude": ["node_modules"]

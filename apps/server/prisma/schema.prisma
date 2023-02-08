@@ -1,17 +1,26 @@
 datasource database {
   provider = "mysql"
-  url      = env("DATABASE_URL")
+  url      = env("DATABASE")
 }
 
 generator client {
   provider = "prisma-client-js"
 }
 
+model Session {
+  id            String @id @default(cuid())
+  user_id       String
+  access_token  String
+  refresh_token String
+  expired_at    String
+
+  @@map("session")
+}
+
 model User {
   id       String @id @default(cuid())
-  name     String
   email    String @unique
   password String
 
-  @@map("users")
+  @@map("user")
 }
