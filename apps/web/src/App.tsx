@@ -1,5 +1,6 @@
 import { router } from '@/app.router';
 import { TrpcProvider } from '@/context/trpc';
+import { trpc } from '@/utils/trpc';
 import { Suspense } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Spinner } from 'ui';

@@ -1,7 +1,7 @@
+import { prisma } from '@/src/database/prisma';
 import registerPlugins from '@/src/plugins';
 import { PrismaClient } from '@prisma/client';
 import fastify, { FastifyInstance } from 'fastify';
-import { prisma } from '@/src/database/prisma'
 class App {
   static instance: App;
   private _app!: FastifyInstance;

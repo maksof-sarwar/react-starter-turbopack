@@ -10,7 +10,6 @@ export function TrpcProvider({ children }) {
 			links: [
 				httpBatchLink({
 					url: 'http://localhost:5000/trpc',
-					// optional
 					headers() {
 						return {};
 					},

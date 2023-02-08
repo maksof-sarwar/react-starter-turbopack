@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { prisma } from "@/src/database/prisma";
-import { t } from "@/trpc/main";
+import { t } from "@/trpc";
 
 
 
