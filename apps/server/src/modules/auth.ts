@@ -1,6 +1,5 @@
 import { z } from "zod";
-import { prisma } from "@/src/database/prisma";
-import { t } from "@/trpc";
+import { t } from "../../trpc";
 
 
 
@@ -22,8 +21,8 @@ export const authRouter = t.router({
       signed: false,
       httpOnly: true,
     })
-    const data = await prisma.user.findFirst();
-    return data
+    // const data = await ctx.prisma.user.findFirst();
+    return 'data'
   }),
 
 })

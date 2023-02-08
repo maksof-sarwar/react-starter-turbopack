@@ -95,6 +95,7 @@ importers:
       react-dom: ^18.2.0
       react-router-dom: ^6.8.0
       rimraf: ^4.1.1
+      server: workspace:*
       tsconfig: workspace:*
       tw-config: workspace:*
       typescript: ^4.9.3
@@ -105,6 +106,7 @@ importers:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-router-dom: 6.8.0_biqbaboplfbrettd7655fr4n2y
+      server: link:../server
       ui: link:../../packages/ui
     devDependencies:
       '@tanstack/react-query': 4.24.4_biqbaboplfbrettd7655fr4n2y

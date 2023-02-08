@@ -5,22 +5,21 @@ import { useState } from 'react';
 
 export function TrpcProvider({ children }) {
 	const [queryClient] = useState(() => new QueryClient());
-	// const [trpcClient] = useState(() =>
-	// 	trpc.createClient({
-	// 		links: [
-	// 			httpBatchLink({
-	// 				url: 'http://localhost:5000/trpc',
-	// 				headers() {
-	// 					return {};
-	// 				},
-	// 			}),
-	// 		],
-	// 	})
-	// );
+	const [trpcClient] = useState(() =>
+		trpc.createClient({
+			links: [
+				httpBatchLink({
+					url: 'http://localhost:5000/trpc',
+					headers() {
+						return {};
+					},
+				}),
+			],
+		})
+	);
 	return (
-		<>{children}</>
-		// <trpc.Provider client={trpcClient} queryClient={queryClient}>
-		// 	<QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-		// </trpc.Provider>
+		<trpc.Provider client={trpcClient} queryClient={queryClient}>
+			<QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+		</trpc.Provider>
 	);
 }
