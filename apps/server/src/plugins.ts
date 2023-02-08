@@ -1,6 +1,8 @@
 import swaggerOptions from '@/src/helpers/swagger';
 import { createContext } from '@/src/trpc/context';
 import cors from '@fastify/cors';
+import session from '@fastify/session';
+import cookie from '@fastify/cookie';
 import jwt from '@fastify/jwt';
 import sensible from '@fastify/sensible';
 import fastifyStatic from '@fastify/static';
@@ -10,7 +12,8 @@ import { FastifyInstance } from 'fastify';
 import health from 'fastify-healthcheck';
 import { join } from 'path';
 import { appRouter } from './trpc';
-const FRONTEND = join(process.cwd(), 'client');
+const FRONTEND = join(process.cwd(), 'build', 'web');
+console.log(FRONTEND)
 export default function registerPlugins(app: FastifyInstance) {
   app.register(fastifySwagger, swaggerOptions);
   app.register(fastifyStatic, {
@@ -30,7 +33,7 @@ export default function registerPlugins(app: FastifyInstance) {
     }
   })
   // app.register(session, { secret: 'a secret with minimum length of 32 characters' });
-  // app.register(cookie)
+  app.register(cookie)
   app.register(fastifyTRPCPlugin, {
     prefix: '/api',
     trpcOptions: { router: appRouter, createContext, },

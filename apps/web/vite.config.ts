@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   clearScreen: false,
   build: {
-    outDir: "../../client",
+    outDir: "../../build/web",
   },
   resolve: {
     alias: {

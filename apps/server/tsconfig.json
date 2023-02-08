@@ -8,7 +8,7 @@
 		"sourceMap": false,
 		"noImplicitAny": false,
 		"types": ["node"],
-		"outDir": "dist",
+		"outDir": "../../build/server",
 		"target": "ES6",
 		"lib": ["ES2015"],
 		"moduleResolution": "node",
@@ -18,6 +18,6 @@
 			"@/*": ["*"]
 		}
 	},
-	"include": ["src/**/*"],
+	"include": ["src/**/*", "*.ts"],
 	"exclude": ["node_modules"]
 }

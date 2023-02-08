@@ -7,6 +7,7 @@
 		"packages/*"
 	],
 	"scripts": {
+		"server": "node build/server/index.js",
 		"build": "turbo run build",
 		"dev": "turbo run dev --parallel",
 		"start": "pnpm dev",
@@ -14,20 +15,22 @@
 		"format": "prettier --write \"**/*.{ts,tsx,md}\""
 	},
 	"devDependencies": {
+		"autoprefixer": "^10.4.13",
 		"eslint-config-custom": "workspace:*",
-		"prettier": "latest",
-		"turbo": "latest",
-		"tailwindcss": "^3.2.4",
 		"postcss": "^8.4.21",
+		"prettier": "latest",
 		"prettier-plugin-tailwindcss": "^0.2.2",
-		"autoprefixer": "^10.4.13"
+		"tailwindcss": "^3.2.4",
+		"turbo": "latest"
 	},
 	"engines": {
-		"node": ">=14.0.0",
+		"node": ">=16.0.0",
 		"npm": "'use yarn'",
 		"yarn": ">= 1.22.19",
 		"pnpm": ">= 7.25.1"
 	},
-	"dependencies": {},
+	"dependencies": {
+		"server": "^1.0.38"
+	},
 	"packageManager": "pnpm@7.26.0"
 }
