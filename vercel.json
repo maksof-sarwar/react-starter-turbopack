@@ -5,12 +5,20 @@
 		{
 			"src": "build/server/index.js",
 			"use": "@vercel/node"
+		},
+		{
+			"src": "build/web/index.js",
+			"use": "@vercel/node"
 		}
 	],
 	"rewrites": [
 		{
-			"source": "/(.*)",
+			"source": "/api/(.*)",
 			"destination": "build/server/index.js"
+		},
+		{
+			"source": "/(.*)",
+			"destination": "build/web/index.js"
 		}
 	]
 }

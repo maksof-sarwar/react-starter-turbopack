@@ -13,27 +13,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const prisma_1 = require("./database/prisma");
-const plugins_1 = __importDefault(require("../src/plugins"));
+const plugins_1 = __importDefault(require("./plugins"));
 const fastify_1 = __importDefault(require("fastify"));
 class App {
     constructor() {
         this.prisma = prisma_1.prisma;
         this.PORT = Number(process.env.PORT || 3000);
         App.instance = this;
-        this._app = (0, plugins_1.default)((0, fastify_1.default)({ maxParamLength: 5000 }));
+        this._app = (0, plugins_1.default)((0, fastify_1.default)({ maxParamLength: 5000, }));
     }
     startServer() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                this._app.setNotFoundHandler((req, rep) => {
-                    if (req.url.startsWith("/api")) {
-                        rep.notFound(`Route ${req.method}:${req.url} not found`);
-                    }
-                    else
-                        rep.status(200).sendFile("index.html");
-                });
                 yield this._app.ready();
-                this._app.log.debug(`\nRoutes:\n${this._app.printRoutes()}`);
                 yield this._app.listen({ port: this.PORT, host: '0.0.0.0' });
                 console.log(`\x1b[44m\x1b[1m\x1b[4m[server] is running on port : ${this.PORT}\x1b[0m`);
             }

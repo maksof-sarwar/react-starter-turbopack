@@ -1,0 +1,1 @@
+{"version":3,"file":"context.d.ts","sourceRoot":"","sources":["../../../../apps/server/src/trpc/context.ts"],"names":[],"mappings":";AAEA,OAAO,EAAE,oBAAoB,EAAE,MAAM,cAAc,CAAC;AACpD,OAAO,EAAE,2BAA2B,EAAE,MAAM,+BAA+B,CAAC;AAC5E,wBAAgB,aAAa,CAAC,EAAE,GAAG,EAAE,GAAG,EAAE,EAAE,2BAA2B;;;;;;EAGtE;AAED,MAAM,MAAM,OAAO,GAAG,oBAAoB,CAAC,OAAO,aAAa,CAAC,CAAC"}

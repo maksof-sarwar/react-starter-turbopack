@@ -11,7 +11,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.authRouter = void 0;
 const zod_1 = require("zod");
-const prisma_1 = require("../../src/database/prisma");
 const trpc_1 = require("../../trpc");
 exports.authRouter = trpc_1.t.router({
     login: trpc_1.t.procedure.input(zod_1.z.object({
@@ -29,7 +28,7 @@ exports.authRouter = trpc_1.t.router({
             signed: false,
             httpOnly: true,
         });
-        const data = yield prisma_1.prisma.user.findFirst();
-        return data;
+        // const data = await ctx.prisma.user.findFirst();
+        return 'data';
     })),
 });

@@ -14,12 +14,6 @@ class App {
   }
   async startServer() {
     try {
-      this._app.setNotFoundHandler((req, rep) => {
-        if (req.url.startsWith("/api")) {
-          rep.notFound(`Route ${req.method}:${req.url} not found`)
-        } else
-          rep.status(200).sendFile("index.html");
-      });
       await this._app.ready();
       await this._app.listen({ port: this.PORT, host: '0.0.0.0' })
       console.log(`\x1b[44m\x1b[1m\x1b[4m[server] is running on port : ${this.PORT}\x1b[0m`);
