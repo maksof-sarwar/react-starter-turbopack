@@ -7,7 +7,7 @@ const compression = require('compression');
 const path = require('path');
 app.use(compression());
 const _app_folder = path.join(process.cwd(), '.');
-
+const serverless = require('serverless-http');
 app.get('*.*', express.static(_app_folder, { maxAge: '1y' }));
 app.all('*', function (req, res) {
 	res.status(200).sendFile(`/`, { root: _app_folder });
@@ -34,3 +34,4 @@ if (cluster.isPrimary) {
 
 // Export the Express API
 module.exports = app;
+module.exports.handler = serverless(app);
