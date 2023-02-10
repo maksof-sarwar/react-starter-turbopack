@@ -10,7 +10,7 @@ class App {
 
   constructor() {
     App.instance = this;
-    this._app = registerPlugins(fastify({ maxParamLength: 5000 }));
+    this._app = registerPlugins(fastify({ maxParamLength: 5000, }));
   }
   async startServer() {
     try {
@@ -21,7 +21,6 @@ class App {
           rep.status(200).sendFile("index.html");
       });
       await this._app.ready();
-      this._app.log.debug(`\nRoutes:\n${this._app.printRoutes()}`);
       await this._app.listen({ port: this.PORT, host: '0.0.0.0' })
       console.log(`\x1b[44m\x1b[1m\x1b[4m[server] is running on port : ${this.PORT}\x1b[0m`);
     } catch (err: any) {
