@@ -15,7 +15,6 @@
 		"db": "prisma db push",
 		"schemix": "ts-node ./prisma/base.ts && prisma format",
 		"studio": "prisma studio",
-		"postinstall": "pnpm run dbsync",
 		"dbsync": "pnpm run schemix && pnpm run db && prisma generate",
 		"build": "pnpm clean && tsc && tsc-alias -p tsconfig.json"
 	},
