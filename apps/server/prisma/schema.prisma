@@ -10,7 +10,7 @@ generator client {
 model Session {
   id           String @id @default(cuid())
   user_id      String
-  access_token String
+  access_token String @database.Text
   expired_at   Int
 
   @@map("session")

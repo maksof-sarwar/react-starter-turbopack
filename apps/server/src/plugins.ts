@@ -17,7 +17,7 @@ export default function registerPlugins(app: FastifyInstance) {
   app.register(jwt, {
     secret: 'secret',
     cookie: {
-      cookieName: 'refresh-token',
+      cookieName: 'access-token',
       signed: false
     },
     sign: {

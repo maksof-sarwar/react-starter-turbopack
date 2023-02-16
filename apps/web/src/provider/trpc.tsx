@@ -9,6 +9,12 @@ export function TrpcProvider({ children }) {
 			links: [
 				httpBatchLink({
 					url: 'http://localhost:5000/api',
+					fetch(url, options) {
+						return fetch(url, {
+							...options,
+							credentials: 'same-origin',
+						});
+					},
 				}),
 			],
 		})

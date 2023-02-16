@@ -21,12 +21,18 @@ export const authRouter = t.router({
       password: z.string(),
     })
   ).mutation(async ({ ctx, input }) => {
-    const { password, ...user } = await ctx.prisma.user.findFirstOrThrow({ where: { email: input.email } });
-    const isPasswordMatch = matchPassword(password, input.password);
+    const { password, ...user } = await ctx.prisma.user.findFirstOrThrow({ where: { email: input.email, }, select: { password: true, email: true, id: true } });
+    const isPasswordMatch = matchPassword(input.password, password);
     if (!isPasswordMatch) ctx.res.forbidden('Password not match');
     const token = generateToken(user)
+    console.log(token)
     const session = await ctx.prisma.session.create({ data: { user_id: user.id, ...token }, select: { access_token: true } });
-    ctx.res.cookie('access-token', session.access_token, { sameSite: 'none', signed: false })
+    ctx.res.cookie('access-token', session.access_token, {
+      domain: 'localhost',
+      path: '/',
+      secure: true,
+      sameSite: 'lax',
+    })
     return session;
   }),
 })

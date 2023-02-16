@@ -12,21 +12,15 @@
 		"dev": "turbo run dev --parallel",
 		"start": "pnpm dev",
 		"lint": "turbo run lint",
-		"format": "prettier --write \"**/*.{ts,tsx,md}\"",
-		"netlify": "netlify-lambda build build/web"
+		"format": "prettier --write \"**/*.{ts,tsx,md}\""
 	},
 	"devDependencies": {
-		"@types/bcrypt": "^5.0.0",
 		"autoprefixer": "^10.4.13",
-		"bcrypt": "^5.1.0",
 		"eslint-config-custom": "workspace:*",
-		"netlify-lambda": "^2.0.15",
 		"postcss": "^8.4.21",
 		"prettier": "latest",
-		"prettier-plugin-tailwindcss": "^0.2.2",
-		"server": "^1.0.38",
-		"serverless-http": "^3.1.1",
-		"tailwindcss": "^3.2.4",
+		"prettier-plugin-tailwindcss": "^0.2.3",
+		"tailwindcss": "^3.2.6",
 		"turbo": "latest"
 	},
 	"engines": {
@@ -34,10 +28,6 @@
 		"npm": "'use yarn'",
 		"yarn": ">= 1.22.19",
 		"pnpm": ">= 7.25.1"
-	},
-	"dependencies": {
-		"compression": "^1.7.4",
-		"express": "^4.18.2"
 	},
 	"packageManager": "pnpm@7.26.0"
 }
