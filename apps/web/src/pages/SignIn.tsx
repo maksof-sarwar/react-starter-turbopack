@@ -1,9 +1,12 @@
 import { trpc } from '@/utils/trpc';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 
 const SignIn = () => {
-	const mutate = trpc.login.useMutation();
+	const a = trpc.auth.login.useMutation();
+	useEffect(() => {
+		a.mutateAsync({ email: 'asdasd', password: 'asdasd' });
+	}, []);
 	return (
 		<div className='flex min-h-full  flex-col justify-center py-12 sm:px-6 lg:px-8 '>
 			<div className='sm:mx-auto sm:w-full sm:max-w-md'>
@@ -25,7 +28,11 @@ const SignIn = () => {
 
 			<div className='mt-8 sm:mx-auto sm:w-full sm:max-w-md'>
 				<div className='bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10'>
-					<form className='space-y-6' action='#' method='POST'>
+					<form
+						className='space-y-6'
+						onSubmit={(event) => {
+							console.log(event);
+						}}>
 						<div>
 							<label htmlFor='email' className='block text-sm font-medium text-gray-700'>
 								Email address

@@ -16,12 +16,15 @@
 		"netlify": "netlify-lambda build build/web"
 	},
 	"devDependencies": {
+		"@types/bcrypt": "^5.0.0",
 		"autoprefixer": "^10.4.13",
+		"bcrypt": "^5.1.0",
 		"eslint-config-custom": "workspace:*",
 		"netlify-lambda": "^2.0.15",
 		"postcss": "^8.4.21",
 		"prettier": "latest",
 		"prettier-plugin-tailwindcss": "^0.2.2",
+		"server": "^1.0.38",
 		"serverless-http": "^3.1.1",
 		"tailwindcss": "^3.2.4",
 		"turbo": "latest"

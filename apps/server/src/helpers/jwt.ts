@@ -4,7 +4,7 @@ import { FastifyReply, FastifyRequest } from 'fastify';
 
 export const getExpireTime = (day: number): number => 60 * 60 * 24 * day;
 
-export function generateToken(payLoad, expiry): string {
+export function generateToken(payLoad, expiry = getExpireTime(1)) {
   const expiresIn = payLoad.expiresIn = expiry;
   const isObject = typeof payLoad === 'object';
   if (!payLoad) {
@@ -17,7 +17,10 @@ export function generateToken(payLoad, expiry): string {
     throw error;
   }
 
-  return App.instance.app.jwt.sign(payLoad, { expiresIn });
+  return {
+    access_token: App.instance.app.jwt.sign(payLoad, { expiresIn }),
+    expired_at: expiresIn
+  };
 }
 
 export function verifyToken() {

@@ -6,7 +6,6 @@ export default createModel((Session) => {
     .mixin(cuidmixin)
     .string("user_id")
     .string("access_token")
-    .string("refresh_token")
-    .string("expired_at")
+    .int("expired_at")
     .map({ name: "session" });
 });
