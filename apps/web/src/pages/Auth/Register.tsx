@@ -1,44 +1,11 @@
-// import { useForm } from '@/hooks';
 import { trpc } from '@/utils/trpc';
 import { Link } from 'react-router-dom';
+import { Button, Form, Input } from 'ui';
+import { ErrorLabel } from 'ui';
 
 const Register = () => {
 	const register = trpc.auth.register.useMutation();
-	// const { form: SignInForm, handleFunction } = useForm({
-	// 	buttonLabel: 'Register',
-	// 	formControl: [
-	// 		{
-	// 			label: 'email',
-	// 			name: 'email',
-	// 			FormInput: (args) => (
-	// 				<input
-	// 					{...args}
-	// 					type='email'
-	// 					className='block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer'
-	// 				/>
-	// 			),
-	// 			attributes: { required: true },
-	// 		},
-	// 		{
-	// 			FormInput: (args) => {
-	// 				return (
-	// 					<input
-	// 						{...args}
-	// 						type='password'
-	// 						className='block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer'
-	// 					/>
-	// 				);
-	// 			},
-	// 			label: 'password',
-	// 			name: 'password',
-	// 			attributes: { required: true },
-	// 		},
-	// 	],
-	// 	onSubmit: async (args) => {
-	// 		const resposne = await register.mutateAsync({ ...args });
-	// 		console.log(resposne);
-	// 	},
-	// });
+
 	return (
 		<div className='flex min-h-full   flex-col justify-center py-12 sm:px-6 lg:px-8 '>
 			<div className='sm:mx-auto sm:w-full sm:max-w-md '>
@@ -60,7 +27,52 @@ const Register = () => {
 
 			<div className='mt-8 sm:mx-auto sm:w-full sm:max-w-md'>
 				<div className='bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10'>
-					{/* {SignInForm} */}
+					<Form
+						onSubmit={async (args) => {
+							const resposne = await register.mutateAsync({ ...args });
+							console.log(resposne);
+						}}
+						formNode={({ register, state: { errors } }) => {
+							return (
+								<>
+									<div className='relative z-0 w-full mb-6 group'>
+										<label className='peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6'>
+											Email
+										</label>
+										<Input
+											autoComplete='off'
+											register={register('email', {
+												required: 'email is required',
+												pattern: {
+													value: /\S+@\S+\.\S+/,
+													message: 'Entered value does not match email format',
+												},
+											})}
+											type='text'
+										/>
+										{errors.email && <ErrorLabel message={errors.email.message?.toString()} />}
+									</div>
+									<div className='relative z-0 w-full mb-6 group'>
+										<label className='peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6'>
+											Password
+										</label>
+										<Input
+											type='password'
+											register={register('password', {
+												minLength: {
+													value: 5,
+													message: 'min length is 5',
+												},
+												required: 'password is required',
+											})}
+										/>
+										{errors.password && <ErrorLabel message={errors.password.message?.toString()} />}
+									</div>
+									<Button type='submit'>Register</Button>
+								</>
+							);
+						}}
+					/>
 
 					<div className='mt-6'>
 						<div className='relative'>
