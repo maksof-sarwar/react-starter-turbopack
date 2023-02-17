@@ -1,11 +1,21 @@
 import { ButtonHTMLAttributes } from 'react';
 import { TProps } from './types';
+import { Spinner } from './Spinner';
 
-export const Button = ({ ...props }: TProps<ButtonHTMLAttributes<HTMLButtonElement>>) => {
-	const className = (props?.className || '').concat(` btn w-full btn-primary flex  btn-blockitems-center`);
+export type TButtonProps = TProps<ButtonHTMLAttributes<HTMLButtonElement>> & { isLoading?: boolean };
+export const Button = ({ isLoading = false, ...props }: TButtonProps) => {
+	const className = (props?.className || '').concat(
+		`  disabled:bg-yellow-300 btn w-full btn-primary flex  btn-blockitems-center`
+	);
 	return (
-		<button {...props} className={className}>
-			{props.children}
+		<button {...props} className={className} disabled={isLoading}>
+			{isLoading ? (
+				<span className='text-center'>
+					<Spinner />
+				</span>
+			) : (
+				props.children
+			)}
 		</button>
 	);
 };

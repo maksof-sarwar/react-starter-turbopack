@@ -1,8 +1,7 @@
 import { generateToken } from "@/src/helpers/jwt";
 import { hashPassword, matchPassword } from "@/src/helpers/password";
 import { z } from "zod";
-import { t } from "../../trpc";
-
+import { protectedProcedure, t } from "../../trpc";
 
 
 export const authRouter = t.router({
@@ -28,11 +27,15 @@ export const authRouter = t.router({
     console.log(token)
     const session = await ctx.prisma.session.create({ data: { user_id: user.id, ...token }, select: { access_token: true } });
     ctx.res.cookie('access-token', session.access_token, {
-      domain: 'localhost',
+      expires: new Date(Date.now() + 9999999),
       path: '/',
-      secure: true,
-      sameSite: 'lax',
+      httpOnly: true,
+      sameSite: 'strict',
     })
     return session;
+  }),
+  test: protectedProcedure.query(({ ctx, input }) => {
+    // console.log(ctx.req.session)
+    return ''
   }),
 })

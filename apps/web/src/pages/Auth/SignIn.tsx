@@ -4,6 +4,7 @@ import { Button, Form, Input } from 'ui';
 import { ErrorLabel } from 'ui';
 const SignIn = () => {
 	const signIn = trpc.auth.login.useMutation();
+	const q = trpc.auth.test.useQuery(undefined, { enabled: false, retry: 0 });
 
 	return (
 		<div className='flex min-h-full   flex-col justify-center py-12 sm:px-6 lg:px-8 '>
@@ -21,6 +22,13 @@ const SignIn = () => {
 					<Link to={'/auth/register'} className='font-medium text-indigo-600 hover:text-indigo-500'>
 						start your 14-day free trial
 					</Link>
+					<Button
+						onClick={() => {
+							console.log(q.refetch());
+						}}>
+						{' '}
+						test{' '}
+					</Button>
 				</p>
 			</div>
 

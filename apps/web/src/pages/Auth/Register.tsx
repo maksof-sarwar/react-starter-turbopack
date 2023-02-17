@@ -4,7 +4,7 @@ import { Button, Form, Input } from 'ui';
 import { ErrorLabel } from 'ui';
 
 const Register = () => {
-	const register = trpc.auth.register.useMutation();
+	const registerApi = trpc.auth.register.useMutation();
 
 	return (
 		<div className='flex min-h-full   flex-col justify-center py-12 sm:px-6 lg:px-8 '>
@@ -29,7 +29,7 @@ const Register = () => {
 				<div className='bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10'>
 					<Form
 						onSubmit={async (args) => {
-							const resposne = await register.mutateAsync({ ...args });
+							const resposne = await registerApi.mutateAsync({ ...args });
 							console.log(resposne);
 						}}
 						formNode={({ register, state: { errors } }) => {
@@ -68,7 +68,9 @@ const Register = () => {
 										/>
 										{errors.password && <ErrorLabel message={errors.password.message?.toString()} />}
 									</div>
-									<Button type='submit'>Register</Button>
+									<Button type='submit' isLoading={registerApi.isLoading}>
+										Register
+									</Button>
 								</>
 							);
 						}}

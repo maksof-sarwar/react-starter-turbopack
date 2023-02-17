@@ -12,7 +12,7 @@ export function TrpcProvider({ children }) {
 					fetch(url, options) {
 						return fetch(url, {
 							...options,
-							credentials: 'same-origin',
+							credentials: 'include',
 						});
 					},
 				}),
