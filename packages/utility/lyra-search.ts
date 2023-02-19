@@ -1,8 +1,16 @@
-import { create } from '@lyrasearch/lyra'
+import { create, insertBatch } from '@lyrasearch/lyra'
 
+type Data = {
+  name: string;
+}
 
-const db = create({
+const db = await create({
   schema: {
     name: 'string',
   }
 })
+
+
+export async function createBook(book: any[]) {
+  await insertBatch(db, book)
+}
