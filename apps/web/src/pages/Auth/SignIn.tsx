@@ -4,7 +4,7 @@ import { Button, Form, Input } from 'ui';
 import { ErrorLabel } from 'ui';
 const SignIn = () => {
 	const signIn = trpc.auth.login.useMutation();
-	const q = trpc.auth.test.useQuery(undefined, { enabled: false, retry: 0 });
+	const q = trpc.auth.test.useQuery(undefined, { enabled: false, retry: 0pn });
 
 	return (
 		<div className='flex min-h-full   flex-col justify-center py-12 sm:px-6 lg:px-8 '>

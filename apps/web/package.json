@@ -17,6 +17,7 @@
 		"react-hook-form": "^7.43.1",
 		"react-router-dom": "^6.8.0",
 		"server": "workspace:*",
+		"utility": "workspace:*",
 		"ui": "workspace:*"
 	},
 	"devDependencies": {

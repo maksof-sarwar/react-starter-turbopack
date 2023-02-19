@@ -1,0 +1,20 @@
+{
+	"name": "utility",
+	"version": "0.0.0",
+	"main": "./index.ts",
+	"types": "./index.ts",
+	"license": "MIT",
+	"scripts": {
+		"lint": "eslint *.ts*"
+	},
+	"devDependencies": {
+		"eslint": "^7.32.0",
+		"eslint-config-custom": "workspace:*",
+		"tsconfig": "workspace:*",
+		"typescript": "^4.5.2"
+	},
+	"dependencies": {
+		"@lyrasearch/lyra": "^0.4.9",
+		"nanostores": "^0.7.4"
+	}
+}
