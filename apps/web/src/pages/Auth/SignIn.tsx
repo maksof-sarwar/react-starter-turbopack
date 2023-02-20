@@ -4,6 +4,7 @@ import { Button, Form, Input } from 'ui';
 import { ErrorLabel } from 'ui';
 const SignIn = () => {
 	const signIn = trpc.auth.login.useMutation();
+	const logout = trpc.auth.logout.useMutation();
 	const q = trpc.auth.test.useQuery(undefined, { enabled: false, retry: 0 });
 
 	return (
@@ -28,6 +29,12 @@ const SignIn = () => {
 						}}>
 						{' '}
 						test{' '}
+					</Button>
+					<Button
+						onClick={() => {
+							logout.mutateAsync();
+						}}>
+						logout
 					</Button>
 				</p>
 			</div>

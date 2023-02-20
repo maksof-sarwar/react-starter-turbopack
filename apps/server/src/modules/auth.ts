@@ -38,4 +38,8 @@ export const authRouter = t.router({
     // console.log(ctx.req.session)
     return ''
   }),
+  logout: t.procedure.mutation(({ ctx, input }) => {
+    ctx.res.clearCookie('access-token')
+    return 'Logout successfull'
+  }),
 })
