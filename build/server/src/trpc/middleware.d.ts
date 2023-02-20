@@ -5,8 +5,11 @@ export declare const authMiddleware: () => import("@trpc/server").MiddlewareFunc
             req: import("fastify").FastifyRequest<import("fastify").RouteGenericInterface, import("fastify").RawServerDefault, import("http").IncomingMessage, import("fastify").FastifySchema, import("fastify").FastifyTypeProviderDefault, unknown, import("fastify").FastifyBaseLogger, import("fastify/types/type-provider").ResolveFastifyRequestType<import("fastify").FastifyTypeProviderDefault, import("fastify").FastifySchema, import("fastify").RouteGenericInterface>>;
             res: import("fastify").FastifyReply<import("fastify").RawServerDefault, import("http").IncomingMessage, import("http").ServerResponse<import("http").IncomingMessage>, import("fastify").RouteGenericInterface, unknown, import("fastify").FastifySchema, import("fastify").FastifyTypeProviderDefault, unknown>;
             user: {
-                name: string | string[];
+                token: string | undefined;
             };
+            prisma: import("@prisma/client").PrismaClient<{
+                errorFormat: "pretty";
+            }, never, false>;
         };
         meta: object;
         errorShape: import("@trpc/server").DefaultErrorShape;
@@ -16,8 +19,11 @@ export declare const authMiddleware: () => import("@trpc/server").MiddlewareFunc
         req: import("fastify").FastifyRequest<import("fastify").RouteGenericInterface, import("fastify").RawServerDefault, import("http").IncomingMessage, import("fastify").FastifySchema, import("fastify").FastifyTypeProviderDefault, unknown, import("fastify").FastifyBaseLogger, import("fastify/types/type-provider").ResolveFastifyRequestType<import("fastify").FastifyTypeProviderDefault, import("fastify").FastifySchema, import("fastify").RouteGenericInterface>>;
         res: import("fastify").FastifyReply<import("fastify").RawServerDefault, import("http").IncomingMessage, import("http").ServerResponse<import("http").IncomingMessage>, import("fastify").RouteGenericInterface, unknown, import("fastify").FastifySchema, import("fastify").FastifyTypeProviderDefault, unknown>;
         user: {
-            name: string | string[];
+            token: string | undefined;
         };
+        prisma: import("@prisma/client").PrismaClient<{
+            errorFormat: "pretty";
+        }, never, false>;
     };
     _input_out: unknown;
     _input_in: unknown;
@@ -30,8 +36,11 @@ export declare const authMiddleware: () => import("@trpc/server").MiddlewareFunc
             req: import("fastify").FastifyRequest<import("fastify").RouteGenericInterface, import("fastify").RawServerDefault, import("http").IncomingMessage, import("fastify").FastifySchema, import("fastify").FastifyTypeProviderDefault, unknown, import("fastify").FastifyBaseLogger, import("fastify/types/type-provider").ResolveFastifyRequestType<import("fastify").FastifyTypeProviderDefault, import("fastify").FastifySchema, import("fastify").RouteGenericInterface>>;
             res: import("fastify").FastifyReply<import("fastify").RawServerDefault, import("http").IncomingMessage, import("http").ServerResponse<import("http").IncomingMessage>, import("fastify").RouteGenericInterface, unknown, import("fastify").FastifySchema, import("fastify").FastifyTypeProviderDefault, unknown>;
             user: {
-                name: string | string[];
+                token: string | undefined;
             };
+            prisma: import("@prisma/client").PrismaClient<{
+                errorFormat: "pretty";
+            }, never, false>;
         };
         meta: object;
         errorShape: import("@trpc/server").DefaultErrorShape;
@@ -39,7 +48,7 @@ export declare const authMiddleware: () => import("@trpc/server").MiddlewareFunc
     }>;
     _ctx_out: {
         user: {
-            name: string | string[];
+            token: string | undefined;
         };
     };
     _input_in: unknown;

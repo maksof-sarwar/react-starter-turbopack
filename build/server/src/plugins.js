@@ -17,18 +17,10 @@ function registerPlugins(app) {
     app.register(swagger_2.default, swagger_1.default);
     app.register(sensible_1.default);
     app.register(fastify_healthcheck_1.default, { healthcheckUrl: '/health', exposeUptime: true });
-    app.register(cors_1.default, { credentials: true, origin: '*', });
+    app.register(cors_1.default, { credentials: true, origin: true, });
     app.register(jwt_1.default, {
         secret: 'secret',
-        cookie: {
-            cookieName: 'refresh-token',
-            signed: false
-        },
-        sign: {
-            expiresIn: '1mo'
-        }
     });
-    // app.register(session, { secret: 'a secret with minimum length of 32 characters' });
     app.register(cookie_1.default);
     app.register(fastify_1.fastifyTRPCPlugin, {
         prefix: '/api',

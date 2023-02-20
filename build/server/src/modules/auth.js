@@ -8,27 +8,52 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.authRouter = void 0;
+const jwt_1 = require("../../src/helpers/jwt");
+const password_1 = require("../../src/helpers/password");
 const zod_1 = require("zod");
 const trpc_1 = require("../../trpc");
 exports.authRouter = trpc_1.t.router({
+    register: trpc_1.t.procedure.input(zod_1.z.object({
+        email: zod_1.z.string(),
+        password: zod_1.z.string(),
+    })).mutation(({ ctx, input }) => {
+        input.password = (0, password_1.hashPassword)(input.password);
+        return ctx.prisma.user.create({ data: Object.assign({}, input) });
+    }),
     login: trpc_1.t.procedure.input(zod_1.z.object({
         email: zod_1.z.string(),
         password: zod_1.z.string(),
-        test: zod_1.z.string()
-    })).mutation(({ ctx, }) => __awaiter(void 0, void 0, void 0, function* () {
-        console.log(ctx.req.cookies);
-        ctx.res.cookie('I set this cookie', 'cooookkiiieee', {
-            path: "/",
-            domain: 'http://localhost:5173',
-            secure: true,
+    })).mutation(({ ctx, input }) => __awaiter(void 0, void 0, void 0, function* () {
+        const _a = yield ctx.prisma.user.findFirstOrThrow({ where: { email: input.email, }, select: { password: true, email: true, id: true } }), { password } = _a, user = __rest(_a, ["password"]);
+        const isPasswordMatch = (0, password_1.matchPassword)(input.password, password);
+        if (!isPasswordMatch)
+            ctx.res.forbidden('Password not match');
+        const token = (0, jwt_1.generateToken)(user);
+        console.log(token);
+        const session = yield ctx.prisma.session.create({ data: Object.assign({ user_id: user.id }, token), select: { access_token: true } });
+        ctx.res.cookie('access-token', session.access_token, {
             expires: new Date(Date.now() + 9999999),
-            sameSite: "none",
-            signed: false,
+            path: '/',
             httpOnly: true,
+            sameSite: 'strict',
         });
-        // const data = await ctx.prisma.user.findFirst();
-        return 'data';
+        return session;
     })),
+    test: trpc_1.protectedProcedure.query(({ ctx, input }) => {
+        // console.log(ctx.req.session)
+        return '';
+    }),
 });

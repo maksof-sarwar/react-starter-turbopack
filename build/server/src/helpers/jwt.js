@@ -16,7 +16,7 @@ exports.verifyToken = exports.generateToken = exports.getExpireTime = void 0;
 const app_1 = __importDefault(require("../../src/app"));
 const getExpireTime = (day) => 60 * 60 * 24 * day;
 exports.getExpireTime = getExpireTime;
-function generateToken(payLoad, expiry) {
+function generateToken(payLoad, expiry = (0, exports.getExpireTime)(1)) {
     const expiresIn = payLoad.expiresIn = expiry;
     const isObject = typeof payLoad === 'object';
     if (!payLoad) {
@@ -27,7 +27,10 @@ function generateToken(payLoad, expiry) {
         const error = new TypeError('Token Payload Must Be An Object');
         throw error;
     }
-    return app_1.default.instance.app.jwt.sign(payLoad, { expiresIn });
+    return {
+        access_token: app_1.default.instance.app.jwt.sign(payLoad, { expiresIn }),
+        expired_at: expiresIn
+    };
 }
 exports.generateToken = generateToken;
 function verifyToken() {

@@ -1,1 +1,1 @@
-{"version":3,"file":"plugins.d.ts","sourceRoot":"","sources":["../../../apps/server/src/plugins.ts"],"names":[],"mappings":";AAQA,OAAO,EAAE,eAAe,EAAE,MAAM,SAAS,CAAC;AAG1C,MAAM,CAAC,OAAO,UAAU,eAAe,CAAC,GAAG,EAAE,eAAe,yOAsB3D"}
+{"version":3,"file":"plugins.d.ts","sourceRoot":"","sources":["../../../apps/server/src/plugins.ts"],"names":[],"mappings":";AASA,OAAO,EAAE,eAAe,EAAE,MAAM,SAAS,CAAC;AAG1C,MAAM,CAAC,OAAO,UAAU,eAAe,CAAC,GAAG,EAAE,eAAe,yOAe3D"}

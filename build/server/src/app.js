@@ -27,7 +27,7 @@ class App {
             try {
                 yield this._app.ready();
                 yield this._app.listen({ port: this.PORT, host: '0.0.0.0' });
-                console.log(`\x1b[44m\x1b[1m\x1b[4m[server] is running on port : ${this.PORT}\x1b[0m`);
+                console.log(`\x1b[44m\x1b[1m\x1b[4m 🚀[server] is running on port : ${this.PORT}\x1b[0m`);
             }
             catch (err) {
                 throw new Error(err);
