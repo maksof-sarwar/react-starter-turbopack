@@ -1,6 +1,6 @@
 import { generateToken } from "@/src/helpers/jwt";
 import { hashPassword, matchPassword } from "@/src/helpers/password";
-import { protectedProcedure, publicProcedure, router } from "@/src/trpc";
+import { protectedProcedure, publicProcedure, router } from "../trpc";
 import { z } from "zod";
 
 
