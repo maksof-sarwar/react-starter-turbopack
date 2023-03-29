@@ -2,6 +2,7 @@ import { prisma } from './database/client';
 import registerPlugins from './plugins';
 import { PrismaClient } from '@prisma/client';
 import fastify, { FastifyInstance } from 'fastify';
+import http from 'http';
 class App {
   static instance: App;
   private _app!: FastifyInstance;
@@ -11,6 +12,7 @@ class App {
   constructor() {
     App.instance = this;
     this._app = registerPlugins(fastify({ maxParamLength: 5000, }));
+
   }
   async startServer() {
     try {

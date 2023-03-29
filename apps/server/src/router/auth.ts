@@ -5,15 +5,16 @@ import { z } from "zod";
 
 
 export const authRouter = router({
-  register: publicProcedure.input(
-    z.object({
-      email: z.string(),
-      password: z.string(),
-    })
-  ).mutation(({ ctx, input }) => {
-    input.password = hashPassword(input.password)
-    return ctx.prisma.user.create({ data: { ...input } });
-  }),
+  register: publicProcedure.meta({ /* 👉 */ description: "This shows in the panel." })
+    .input(
+      z.object({
+        email: z.string(),
+        password: z.string(),
+      })
+    ).mutation(({ ctx, input }) => {
+      input.password = hashPassword(input.password)
+      return ctx.prisma.user.create({ data: { ...input } });
+    }),
   login: publicProcedure.input(
     z.object({
       email: z.string(),
