@@ -12,7 +12,7 @@ const sensible_1 = __importDefault(require("@fastify/sensible"));
 const swagger_2 = __importDefault(require("@fastify/swagger"));
 const fastify_1 = require("@trpc/server/adapters/fastify");
 const fastify_healthcheck_1 = __importDefault(require("fastify-healthcheck"));
-const trpc_1 = require("./trpc");
+const _app_1 = require("./router/_app");
 function registerPlugins(app) {
     app.register(swagger_2.default, swagger_1.default);
     app.register(sensible_1.default);
@@ -24,7 +24,7 @@ function registerPlugins(app) {
     app.register(cookie_1.default);
     app.register(fastify_1.fastifyTRPCPlugin, {
         prefix: '/api',
-        trpcOptions: { router: trpc_1.appRouter, createContext: context_1.createContext, },
+        trpcOptions: { router: _app_1.appRouter, createContext: context_1.createContext, },
     });
     return app;
 }

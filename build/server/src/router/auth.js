@@ -23,17 +23,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.authRouter = void 0;
 const jwt_1 = require("../../src/helpers/jwt");
 const password_1 = require("../../src/helpers/password");
+const trpc_1 = require("../../src/trpc");
 const zod_1 = require("zod");
-const trpc_1 = require("../../trpc");
-exports.authRouter = trpc_1.t.router({
-    register: trpc_1.t.procedure.input(zod_1.z.object({
+exports.authRouter = (0, trpc_1.router)({
+    register: trpc_1.publicProcedure.input(zod_1.z.object({
         email: zod_1.z.string(),
         password: zod_1.z.string(),
     })).mutation(({ ctx, input }) => {
         input.password = (0, password_1.hashPassword)(input.password);
         return ctx.prisma.user.create({ data: Object.assign({}, input) });
     }),
-    login: trpc_1.t.procedure.input(zod_1.z.object({
+    login: trpc_1.publicProcedure.input(zod_1.z.object({
         email: zod_1.z.string(),
         password: zod_1.z.string(),
     })).mutation(({ ctx, input }) => __awaiter(void 0, void 0, void 0, function* () {
@@ -55,5 +55,9 @@ exports.authRouter = trpc_1.t.router({
     test: trpc_1.protectedProcedure.query(({ ctx, input }) => {
         // console.log(ctx.req.session)
         return '';
+    }),
+    logout: trpc_1.publicProcedure.mutation(({ ctx, input }) => {
+        ctx.res.clearCookie('access-token');
+        return 'Logout successfull';
     }),
 });

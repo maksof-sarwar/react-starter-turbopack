@@ -1,11 +1,11 @@
 import { generateToken } from "@/src/helpers/jwt";
 import { hashPassword, matchPassword } from "@/src/helpers/password";
+import { protectedProcedure, publicProcedure, router } from "@/src/trpc";
 import { z } from "zod";
-import { protectedProcedure, t } from "../../trpc";
 
 
-export const authRouter = t.router({
-  register: t.procedure.input(
+export const authRouter = router({
+  register: publicProcedure.input(
     z.object({
       email: z.string(),
       password: z.string(),
@@ -14,7 +14,7 @@ export const authRouter = t.router({
     input.password = hashPassword(input.password)
     return ctx.prisma.user.create({ data: { ...input } });
   }),
-  login: t.procedure.input(
+  login: publicProcedure.input(
     z.object({
       email: z.string(),
       password: z.string(),
@@ -38,7 +38,7 @@ export const authRouter = t.router({
     // console.log(ctx.req.session)
     return ''
   }),
-  logout: t.procedure.mutation(({ ctx, input }) => {
+  logout: publicProcedure.mutation(({ ctx, input }) => {
     ctx.res.clearCookie('access-token')
     return 'Logout successfull'
   }),

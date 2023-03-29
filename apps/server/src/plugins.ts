@@ -9,7 +9,7 @@ import fastifySwagger from '@fastify/swagger';
 import { fastifyTRPCPlugin } from '@trpc/server/adapters/fastify';
 import { FastifyInstance } from 'fastify';
 import health from 'fastify-healthcheck';
-import { appRouter } from './trpc';
+import { appRouter } from './router/_app';
 export default function registerPlugins(app: FastifyInstance) {
   app.register(fastifySwagger, swaggerOptions);
   app.register(sensible)

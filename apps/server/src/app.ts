@@ -1,4 +1,4 @@
-import { prisma } from './database/prisma';
+import { prisma } from './database/client';
 import registerPlugins from './plugins';
 import { PrismaClient } from '@prisma/client';
 import fastify, { FastifyInstance } from 'fastify';
